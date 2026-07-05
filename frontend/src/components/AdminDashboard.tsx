@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { Order, FileData } from '../types';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+const API_URL = 'https://caps-mbmi.onrender.com';
 
 export default function AdminDashboard() {
   const [orders, setOrders] = useState<Order[]>([]);

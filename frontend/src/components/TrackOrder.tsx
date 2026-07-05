@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import type { Order, FileData } from '../types';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+const API_URL = 'https://caps-mbmi.onrender.com';
 
 export default function TrackOrder() {
   const [orderNumber, setOrderNumber] = useState('');

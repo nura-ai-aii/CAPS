@@ -3,7 +3,7 @@ import type { ChangeEvent, FormEvent } from 'react';
 
 const PAPER_SIZES = ['Passport Size', '4x6', '5x7', 'A5', 'A4', 'Letter', 'Legal', 'Custom'];
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+const API_URL = 'https://caps-mbmi.onrender.com';
 
 export default function UploadForm({ onOrderSubmitted }: { onOrderSubmitted: () => void }) {
   const [files, setFiles] = useState<File[]>([]);

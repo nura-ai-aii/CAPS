@@ -15,8 +15,8 @@ function App() {
       <header className="relative z-10 glass-panel border-b border-white/40 sticky top-0">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => setCurrentView('upload')}>
-            <div className="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/30">
-              P
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-lg shadow-brand-500/30 bg-white p-1">
+              <img src="/logo.png" alt="PrintCloud" className="w-full h-full object-contain" />
             </div>
             <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-600 to-indigo-600">
               PrintCloud
