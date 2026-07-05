@@ -1,6 +1,8 @@
 import { useState, FormEvent } from 'react';
 import { Order } from '@caps/shared'; // Assume shared is linked or we define it locally
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+
 export default function TrackOrder() {
   const [orderNumber, setOrderNumber] = useState('');
   const [order, setOrder] = useState<Order | null>(null);
@@ -14,7 +16,7 @@ export default function TrackOrder() {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch(`http://localhost:4000/api/orders/${orderNumber.toUpperCase()}`);
+      const res = await fetch(`${API_URL}/api/orders/${orderNumber.toUpperCase()}`);
       if (!res.ok) {
         throw new Error('Order not found');
       }

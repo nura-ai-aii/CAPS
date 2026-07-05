@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Order } from '@caps/shared';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+
 export default function AdminDashboard() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
@@ -13,7 +15,7 @@ export default function AdminDashboard() {
 
   const fetchOrders = async () => {
     try {
-      const res = await fetch('http://localhost:4000/api/orders');
+      const res = await fetch(`${API_URL}/api/orders`);
       if (res.ok) {
         const data = await res.json();
         setOrders(data);
@@ -28,7 +30,7 @@ export default function AdminDashboard() {
   const deleteOrder = async (id: string) => {
     if (!confirm('Are you sure you want to delete this order?')) return;
     try {
-      await fetch(`http://localhost:4000/api/orders/${id}`, { method: 'DELETE' });
+      await fetch(`${API_URL}/api/orders/${id}`, { method: 'DELETE' });
       fetchOrders();
     } catch (error) {
       alert('Failed to delete order');
@@ -37,7 +39,7 @@ export default function AdminDashboard() {
 
   const updateStatus = async (id: string, status: string) => {
     try {
-      await fetch(`http://localhost:4000/api/orders/${id}/status`, {
+      await fetch(`${API_URL}/api/orders/${id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status })

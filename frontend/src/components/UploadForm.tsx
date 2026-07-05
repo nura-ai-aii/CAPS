@@ -2,6 +2,8 @@ import { useState, useRef, ChangeEvent, FormEvent } from 'react';
 
 const PAPER_SIZES = ['Passport Size', '4x6', '5x7', 'A5', 'A4', 'Letter', 'Legal', 'Custom'];
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+
 export default function UploadForm({ onOrderSubmitted }: { onOrderSubmitted: () => void }) {
   const [files, setFiles] = useState<File[]>([]);
   const [paperSize, setPaperSize] = useState('A4');
@@ -35,7 +37,7 @@ export default function UploadForm({ onOrderSubmitted }: { onOrderSubmitted: () 
     formData.append('instructions', instructions);
 
     try {
-      const res = await fetch('http://localhost:4000/api/orders', {
+      const res = await fetch(`${API_URL}/api/orders`, {
         method: 'POST',
         body: formData,
       });
