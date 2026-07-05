@@ -7,7 +7,7 @@ const os = require('os');
 const { exec } = require('child_process');
 const notifier = require('node-notifier');
 
-const BACKEND_URL = 'http://localhost:4000';
+const BACKEND_URL = 'https://caps-mbmi.onrender.com';
 let tray = null;
 let mainWindow = null;
 let isQuitting = false;
