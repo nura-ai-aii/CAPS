@@ -1,5 +1,6 @@
-import { useState, FormEvent } from 'react';
-import { Order } from '@caps/shared'; // Assume shared is linked or we define it locally
+import { useState } from 'react';
+import type { FormEvent } from 'react';
+import type { Order, FileData } from '../types';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 
@@ -100,7 +101,7 @@ export default function TrackOrder() {
             <div>
               <h4 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">Files ({order.files?.length || 0})</h4>
               <ul className="space-y-2 max-h-32 overflow-y-auto pr-2 custom-scrollbar">
-                {order.files?.map(f => (
+                {order.files?.map((f: FileData) => (
                   <li key={f.id} className="text-sm text-slate-600 bg-slate-50 px-3 py-2 rounded-lg truncate border border-slate-100">
                     {f.originalName}
                   </li>

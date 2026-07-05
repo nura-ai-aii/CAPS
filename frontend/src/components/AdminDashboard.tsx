@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Order } from '@caps/shared';
+import type { Order, FileData } from '../types';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 
@@ -93,7 +93,7 @@ export default function AdminDashboard() {
                   </td>
                   <td className="p-4">
                     <div className="flex -space-x-2">
-                      {order.files?.map((f, i) => (
+                      {order.files?.map((f: FileData, i: number) => (
                         <div key={i} className="w-8 h-8 rounded-lg bg-indigo-100 border-2 border-white flex items-center justify-center text-xs font-bold text-indigo-600" title={f.originalName}>
                           {f.originalName.split('.').pop()?.toUpperCase()}
                         </div>

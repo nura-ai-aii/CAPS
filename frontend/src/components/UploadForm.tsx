@@ -1,4 +1,5 @@
-import { useState, useRef, ChangeEvent, FormEvent } from 'react';
+import { useState, useRef } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 
 const PAPER_SIZES = ['Passport Size', '4x6', '5x7', 'A5', 'A4', 'Letter', 'Legal', 'Custom'];
 
