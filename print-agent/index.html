@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PrintCloud Agent</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; padding: 20px; background: #f8fafc; color: #334155; }
+    h1 { font-size: 20px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; }
+    .status-card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    .status-card p { margin: 5px 0; font-size: 14px; }
+    .status-indicator { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #22c55e; margin-right: 5px; }
+    .log-container { background: #1e293b; color: #f8fafc; padding: 15px; border-radius: 8px; height: 200px; overflow-y: auto; font-family: monospace; font-size: 12px; }
+    .log-entry { margin-bottom: 5px; border-bottom: 1px solid #334155; padding-bottom: 5px; }
+    .log-time { color: #94a3b8; margin-right: 10px; }
+  </style>
+</head>
+<body>
+  <h1><span class="status-indicator"></span>PrintCloud Agent</h1>
+  
+  <div class="status-card">
+    <p><strong>Status:</strong> Polling for new orders every 10 seconds...</p>
+    <p><strong>Printer:</strong> Default System Printer</p>
+    <p><strong>Server:</strong> http://localhost:4000</p>
+  </div>
+
+  <h3>Activity Log</h3>
+  <div class="log-container" id="log">
+    <div class="log-entry"><span class="log-time" id="init-time"></span> Agent started. Listening for tasks.</div>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+    document.getElementById('init-time').innerText = new Date().toLocaleTimeString();
+
+    function addLog(message) {
+      const logContainer = document.getElementById('log');
+      const entry = document.createElement('div');
+      entry.className = 'log-entry';
+      const time = new Date().toLocaleTimeString();
+      entry.innerHTML = `<span class="log-time">${time}</span> ${message}`;
+      logContainer.prepend(entry);
+    }
+
+    ipcRenderer.on('order-status', (event, data) => {
+      addLog(`Order ${data.orderNumber} updated to: ${data.status}`);
+    });
+  </script>
+</body>
+</html>
