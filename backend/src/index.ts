@@ -5,7 +5,7 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
-import { OrderStatus, PrintSettings } from '@caps/shared';
+import { OrderStatus, PrintSettings } from './types';
 
 const app = express();
 const prisma = new PrismaClient();
